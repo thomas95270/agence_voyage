@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Destination{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Destination</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for destination in destinations %}
+            <tr>
+                <td>{{ destination.id }}</td>
+                <td>{{ destination.titre }}</td>
+                <td>{{ destination.description }}</td>
+                <td>
+                    <a href="{{ path('app_destination_show', {'id': destination.id}) }}">Afficher</a>
+                    <a href="{{ path('app_destination_edit', {'id': destination.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de destination enregistrée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_destination_new') }}">Nouvelle Destination</a>
+{% endblock %}

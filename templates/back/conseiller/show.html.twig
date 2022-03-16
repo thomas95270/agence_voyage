@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseiller{% endblock %}
+
+{% block body %}
+    <h1>Conseiller</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ conseiller.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ conseiller.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ conseiller.roles ? conseiller.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ conseiller.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ conseiller.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ conseiller.photo }}</td>
+            </tr>
+            <tr>
+                <th>Referent</th>
+                <td>{{ conseiller.referent ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ conseiller.description }}</td>
+            </tr>
+            <tr>
+                <th>Maj</th>
+                <td>{{ conseiller.maj ? conseiller.maj|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_conseiller_index') }}">Retour à la liste des conseiller</a>
+
+    <a href="{{ path('app_conseiller_edit', {'id': conseiller.id}) }}">Modifier</a>
+
+    {{ include('conseiller/_delete_form.html.twig') }}
+{% endblock %}

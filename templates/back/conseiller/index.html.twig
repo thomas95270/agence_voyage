@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseillers{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Conseillers</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Photo</th>
+                <th>Referent</th>
+                <th>Specialité</th>
+                <th>Description</th>
+                <th>Maj</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conseiller in conseillers %}
+            <tr>
+                <td>{{ conseiller.id }}</td>
+                <td>{{ conseiller.email }}</td>
+                <td>{{ conseiller.roles ? conseiller.roles|json_encode : '' }}</td>
+                <td>{{ conseiller.password }}</td>
+                <td>{{ conseiller.nom }}</td>
+                <td>{{ conseiller.prenom }}</td>
+                <td>{{ conseiller.photo }}</td>
+                <td>{{ conseiller.referent ? 'Yes' : 'No' }}</td>
+                <td>{{ conseiller.specialite.titre }}</td>
+                <td>{{ conseiller.description }}</td>
+                <td>{{ conseiller.maj ? conseiller.maj|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_conseiller_show', {'id': conseiller.id}) }}">Afficher</a>
+                    <a href="{{ path('app_conseiller_edit', {'id': conseiller.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Pas de conseiller enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_conseiller_new') }}">Nouveau Conseiller</a>
+{% endblock %}

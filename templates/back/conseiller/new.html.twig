@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseiller{% endblock %}
+
+{% block body %}
+    <h1>Nouveau Conseiller</h1>
+
+    {{ include('back/conseiller/_form.html.twig') }}
+
+    <a href="{{ path('app_conseiller_index') }}">Retour à la liste des conseiller</a>
+{% endblock %}

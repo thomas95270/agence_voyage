@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Destination{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Page {{destination.titre}}</h1>
+
+<h2>Nos conseillers</h2>
+<table class="table text-center">
+    <thead>
+        <td>Nom</td>
+        <td>Prénom</td>
+        <td>descrpition</td>
+        <td>photo</td>
+    </thead>
+
+    <tbody>
+        {% for conseiller in destination.conseillers %}
+            <td>{{conseiller.nom}}</td>
+            <td>{{conseiller.prenom}}</td>
+            <td>{{conseiller.description}}</td>
+            <td>{{conseiller.photo}}</td>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+<h2>Les produits</h2>
+
+<table class="table text-center">
+    <caption >Produits</caption>
+    <thead class="text-center">
+        <td>titre</td>
+        <td>descrpition</td>
+        <td>photo</td>
+        <td>prix</td>
+    </thead>
+
+    <tbody class="text-center">
+        {% for produit in produits %}
+            <td><a href="{{path('front_produit', {'id':produit.id})}}">{{produit.titre}}</a></td>
+            <td>{{produit.description}}</td>
+            <td>{{produit.photo}}</td>
+            <td>{{produit.prix}}</td>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}
+

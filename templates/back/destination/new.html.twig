@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Destination{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle Destination</h1>
+
+    {{ include('back/destination/_form.html.twig') }}
+
+    <a href="{{ path('app_destination_index') }}">Retour aux destinations</a>
+{% endblock %}

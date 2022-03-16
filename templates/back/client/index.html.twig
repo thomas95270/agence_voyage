@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Clients</h1>
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>statut</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Cp</th>
+                <th>Tel</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>
+                    {% for role in client.roles %}
+                        {{ role }}<br>
+                    {% endfor %}
+                </td>
+                <td>{{ client.adresse }}</td>
+                <td>{{ client.ville }}</td>
+                <td>{{ client.cp }}</td>
+                <td>{{ client.tel }}</td>
+                <td>
+                    <a href="{{ path('app_client_show', {'id': client.id}) }}">Afficher</a>
+                    <a href="{{ path('app_client_edit', {'id': client.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Pas de client enregistrer</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_client_new') }}">Nouveau Client</a>
+{% endblock %}

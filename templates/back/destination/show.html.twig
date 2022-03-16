@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Destination{% endblock %}
+
+{% block body %}
+    <h1>Destination</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ destination.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ destination.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ destination.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_destination_index') }}">Retour aux destination</a>
+
+    <a href="{{ path('app_destination_edit', {'id': destination.id}) }}">Modifier</a>
+
+    {{ include('back/destination/_delete_form.html.twig') }}
+{% endblock %}

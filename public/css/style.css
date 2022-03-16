@@ -1,0 +1,32 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: #e8eceb;
+}
+
+#logo {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.photo {
+	background-image: url("../../img/NY_jour.jpg");
+	background-size: cover;
+	background-position-y: center;
+	height: 500px;
+}
+.accroche {
+	background-color: rgba(0, 0, 0, 0.75);
+}
+
+.conseiller {
+	border-radius: 25px;
+}

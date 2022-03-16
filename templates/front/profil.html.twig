@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+Bienvenue sur votre Profil
+{# {{ app.client.prenom ~ " " ~ app.client.nom}} #}
+<table class="text-center">
+    <thead>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+        <th>adresse</th>
+        <th>CP</th>
+        <th>ville</th>
+        <th>reservation</th>
+    </thead>
+    <tbody>
+        <td>{{ user.nom }}</td>
+        <td>{{ user.prenom }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.adresse }}</td>
+        <td>{{ user.cp }}</td>
+        <td>{{ user.ville }}</td>
+        <td>
+            {% for reservation in user.reservations %}
+                {{reservation.produit  }}
+            {% endfor %}
+        </td>
+    </tbody>
+
+</table>
+
+
+{% endblock %}

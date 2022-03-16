@@ -1,0 +1,72 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Produits | {{produit.titre}} {% endblock %}
+
+{% block body %}
+ <h1>Page Produit</h1>
+
+<h3> {{produit.titre}} </h3>
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>titre</th>
+            <th>description</th>
+            <th>photo</th>
+            <th>prix</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+            <td>{{produit.id}}</td>
+            <td>{{produit.titre}}</td>
+            <td>{{produit.description}}</td>
+            <td>{{produit.photo}}</td>
+            <td>{{produit.prix}}</td>
+        </tr>
+    </tbody> 
+</table>
+
+
+<h3> Les étapes de voyages</h3>
+<table class="table text-center">
+    <thead>
+        <th>titre</th>
+        <th>description</th>
+        <th>photo</th>
+        <th>hotel</th>
+    </thead>
+    <tbody>
+    {% for etape in produit.etapes %}
+        <tr>
+            <td>{{etape.titre}}</td>
+            <td>{{etape.description}}</td>
+            <td>{{etape.photo}}</td>
+            <td>{{etape.hotel}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+<h3> Les produits similaires</h3>
+<table class="table text-center">
+    <thead>
+        <th>titre</th>
+        <th>description</th>
+    </thead>
+    <tbody>
+    <pre>
+    </pre>
+    {% for prod in prods %}
+        <tr>
+        
+            <td>{{prod.titre}}</td>
+            <td>{{prod.description}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+    </tbody> 
+
+{% endblock %}
+

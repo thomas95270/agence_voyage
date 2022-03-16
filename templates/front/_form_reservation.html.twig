@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+
+
+        <div class="container-participants" data-prototype="{{ form_widget(form.participants.vars.prototype)|e('html_attr') }}">
+
+        {% for row in form.participants %}
+            <div class="card-participant">
+                {{ form_widget(row) }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
