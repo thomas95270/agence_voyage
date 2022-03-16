@@ -65,6 +65,7 @@ class EtapeController extends AbstractController
         return $this->renderForm('back/etape/edit.html.twig', [
             'etape' => $etape,
             'form' => $form,
+            'edit' => true
         ]);
     }
 

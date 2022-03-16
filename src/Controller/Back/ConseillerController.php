@@ -80,6 +80,7 @@ class ConseillerController extends AbstractController
         return $this->renderForm('back/conseiller/edit.html.twig', [
             'conseiller' => $conseiller,
             'form' => $form,
+            'edit' =>true
         ]);
     }
 

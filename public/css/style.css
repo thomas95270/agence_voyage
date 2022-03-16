@@ -6,6 +6,9 @@
 body {
 	background-color: #e8eceb;
 }
+nav {
+	height: 75px;
+}
 
 #logo {
 	display: flex;

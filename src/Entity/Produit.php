@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ProduitRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+/**
+ * @Vich\Uploadable
+ */
 class Produit
 {
     #[ORM\Id]
@@ -23,6 +27,13 @@ class Produit
 
     #[ORM\Column(type: 'string', length: 255)]
     private $photo;
+
+    /**
+     * @Vich\UploadableField(mapping="photo", fileNameProperty="photo" )
+     */
+    private $photoFile;
+
+
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $maj;
@@ -191,6 +202,26 @@ class Produit
                 $reservation->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of photoFile
+     */ 
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
+    }
+
+    /**
+     * Set the value of photoFile
+     *
+     * @return  self
+     */ 
+    public function setPhotoFile($photoFile)
+    {
+        $this->photoFile = $photoFile;
 
         return $this;
     }

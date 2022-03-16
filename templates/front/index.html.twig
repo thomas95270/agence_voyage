@@ -20,11 +20,11 @@
     <h2 class="text-center text-info mt-5 mb-3"> Nos experts à votre service</h2>
     <div class="d-flex justify-content-evenly">
         {% for conseiller in conseillers %}
-            <div class="conseiller card d-flex justify-content-center p-3" style="width: 18rem;">
+            <div class="conseiller card d-flex justify-content-center p-3" style="width:18rem;">
                 <a href="{{path('front_destination', {
                 'id':conseiller.specialite.id
                 }) }}">
-                    <img width=150px src="../../img/{{conseiller.photo}}" class="rounded-circle card-img-top mx-auto" alt="le portrait d'une femme souriante">
+                    <img width=150px src="{{vich_uploader_asset(conseiller)}}" class="rounded-circle card-img-top mx-auto">
                 </a>
                 <div class="card-body">
                     <h5 class="text-center">{{conseiller.prenom ~ " " ~ conseiller.nom}}</h5>

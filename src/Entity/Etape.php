@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\EtapeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EtapeRepository;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: EtapeRepository::class)]
+/**
+ * @Vich\Uploadable
+ */
 class Etape
 {
     #[ORM\Id]
@@ -18,6 +22,11 @@ class Etape
 
     #[ORM\Column(type: 'string', length: 255)]
     private $photo;
+
+    /**
+     * @Vich\UploadableField(mapping="photo", fileNameProperty="photo" )
+     */
+    private $photoFile;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $maj;
@@ -104,6 +113,26 @@ class Etape
     public function setProduit(?Produit $produit): self
     {
         $this->produit = $produit;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of photoFile
+     */ 
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
+    }
+
+    /**
+     * Set the value of photoFile
+     *
+     * @return  self
+     */ 
+    public function setPhotoFile($photoFile)
+    {
+        $this->photoFile = $photoFile;
 
         return $this;
     }

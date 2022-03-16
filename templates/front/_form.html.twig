@@ -1,4 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn btn-danger">{{ button_label|default('Save') }}</button>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-warning text-light rounded-pill mb-3 fw-bold">{{ button_label|default('Inscription') }}</button>
+    </div>
 {{ form_end(form) }}

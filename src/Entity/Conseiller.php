@@ -5,12 +5,21 @@ namespace App\Entity;
 use App\Entity\Destination;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ConseillerRepository;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ConseillerRepository::class)]
+/**
+ * @Vich\Uploadable
+ */
 class Conseiller extends User
 {
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $photo;
+
+    /**
+     * @Vich\UploadableField(mapping="photo", fileNameProperty="photo" )
+     */
+    private $photoFile;
 
     #[ORM\Column(type: 'boolean')]
     private $referent;
@@ -80,6 +89,26 @@ class Conseiller extends User
     public function setSpecialite(?Destination $specialite): self
     {
         $this->specialite = $specialite;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of photoFile
+     */ 
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
+    }
+
+    /**
+     * Set the value of photoFile
+     *
+     * @return  self
+     */ 
+    public function setPhotoFile($photoFile)
+    {
+        $this->photoFile = $photoFile;
 
         return $this;
     }

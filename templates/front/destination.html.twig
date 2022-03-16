@@ -3,49 +3,48 @@
 {% block title %}Destination{% endblock %}
 
 {% block body %}
-<h1 class="text-center">Page {{destination.titre}}</h1>
-
-<h2>Nos conseillers</h2>
-<table class="table text-center">
-    <thead>
-        <td>Nom</td>
-        <td>Prénom</td>
-        <td>descrpition</td>
-        <td>photo</td>
-    </thead>
-
-    <tbody>
+    <h1 class="text-center text-info m-5">Découvrez {{destination.titre}}</h1>
+    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+    </p>
+    <h3 class="text-center text-info mt-3">Les conseils de nos experts</h3>
         {% for conseiller in destination.conseillers %}
-            <td>{{conseiller.nom}}</td>
-            <td>{{conseiller.prenom}}</td>
-            <td>{{conseiller.description}}</td>
-            <td>{{conseiller.photo}}</td>
+            <h3 class="text-center text-info">{{conseiller.prenom}} : </h3>
+            <div class='d-flex col-8 justify-content-around align-items-center'>
+                <img class="conseiller" src="{{vich_uploader_asset(conseiller)}}">
+                <p>{{conseiller.description}}</p>
+            </div>
         {% endfor %}
-    </tbody>
-</table>
 
-<hr>
-<h2>Les produits</h2>
 
-<table class="table text-center">
-    <caption >Produits</caption>
-    <thead class="text-center">
-        <td>titre</td>
-        <td>descrpition</td>
-        <td>photo</td>
-        <td>prix</td>
-    </thead>
-
-    <tbody class="text-center">
+    <h3 class="text-center text-info mt-3">Nos Itinéraires</h3>
+    <div class="d-flex justify-content-evenly">
         {% for produit in produits %}
-            <td><a href="{{path('front_produit', {'id':produit.id})}}">{{produit.titre}}</a></td>
-            <td>{{produit.description}}</td>
-            <td>{{produit.photo}}</td>
-            <td>{{produit.prix}}</td>
+            <div class="conseiller card d-flex justify-content-center p-3" style="width:24rem;">
+                <div class="conseiller">
+                    <a href="{{path('front_destination', {
+                    'id':produit.id
+                    }) }}">
+                        <img width=150px src="{{vich_uploader_asset(produit)}}" class="card-img-top mx-auto">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="text-center">
+                        <a class="text-reset text-decoration-none" href="{{path('front_produit', {'id':produit.id})}}">{{produit.titre}}{{produit.titre}}</a>
+                    </h5>
+                    <div class="text-center">
+                        <a class="text-reset text-decoration-none" href="{{path('front_destination', {
+                            'id':produit.id
+                            }) }}">
+                            {{produit.titre}}
+                        </a>
+                        <p class="text-warning fw-bold">Durée</p>
+                    </div>
+                    <p class="card-text"> Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
         {% endfor %}
-    </tbody>
 
-</table>
+
 
 {% endblock %}
 

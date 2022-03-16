@@ -4,10 +4,10 @@ namespace App\Controller\Front;
 
 use App\Entity\Client;
 use App\Entity\Produit;
-use App\Form\ClientType;
 use App\Form\ContactType;
 use App\Entity\Destination;
 use App\Entity\Reservation;
+use App\Form\ClientFrontType;
 use App\Form\ReservationFrontType;
 use App\Repository\ProduitRepository;
 use App\Repository\ConseillerRepository;
@@ -43,7 +43,7 @@ public function index(ConseillerRepository $conseillerRepository): Response
     public function inscriptionClient(Request $request, UserPasswordHasherInterface $encoder, EntityManagerInterface $manager): Response
     {
         $client = new Client();
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(ClientFrontType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -146,7 +146,7 @@ public function profil(): Response
 #[Route('/contact', name: 'contact', methods: ['GET', 'POST'])]
 public function contact(Request $request, MailerInterface $mailer): Response
 {
-
+        $user=$this->getUser();
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
@@ -170,6 +170,7 @@ public function contact(Request $request, MailerInterface $mailer): Response
 
     return $this->renderForm('front/contact.html.twig', [
         'form' => $form,
+        'user' => $user
     ]);
 }
 

@@ -31,7 +31,9 @@
                 <td>{{ conseiller.password }}</td>
                 <td>{{ conseiller.nom }}</td>
                 <td>{{ conseiller.prenom }}</td>
-                <td>{{ conseiller.photo }}</td>
+                <td>
+                    <img height=100px src="{{ vich_uploader_asset(conseiller) }}">
+                </td>
                 <td>{{ conseiller.referent ? 'Yes' : 'No' }}</td>
                 <td>{{ conseiller.specialite.titre }}</td>
                 <td>{{ conseiller.description }}</td>

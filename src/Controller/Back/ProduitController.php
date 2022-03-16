@@ -34,8 +34,8 @@ class ProduitController extends AbstractController
 
             $etapes = $form->getData()->getEtapes();
            foreach ($etapes as $etape) {
-               $etape->setProduit($produit);
-               $produit->addEtape($etape);
+                $etape->setProduit($produit);
+                $produit->addEtape($etape);
            }
 
             $produitRepository->add($produit);
@@ -80,6 +80,7 @@ class ProduitController extends AbstractController
         return $this->renderForm('back/produit/edit.html.twig', [
             'produit' => $produit,
             'form' => $form,
+            'edit' => true
         ]);
     }
 

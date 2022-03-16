@@ -23,7 +23,9 @@
                 <td>{{ produit.id }}</td>
                 <td>{{ produit.titre }}</td>
                 <td>{{ produit.description }}</td>
-                <td>{{ produit.photo }}</td>
+                <td>
+                    <img height=100px src="{{vich_uploader_asset(produit)}}" alt="">
+                </td>
                 <td>{{ produit.maj ? produit.maj|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ produit.prix }}</td>
                 <td>

@@ -3,70 +3,79 @@
 {% block title %} Produits | {{produit.titre}} {% endblock %}
 
 {% block body %}
- <h1>Page Produit</h1>
 
-<h3> {{produit.titre}} </h3>
-<table class="table text-center">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>titre</th>
-            <th>description</th>
-            <th>photo</th>
-            <th>prix</th>
-        </tr>
-    </thead>
-     <tbody>
-        <tr>
-            <td>{{produit.id}}</td>
-            <td>{{produit.titre}}</td>
-            <td>{{produit.description}}</td>
-            <td>{{produit.photo}}</td>
-            <td>{{produit.prix}}</td>
-        </tr>
-    </tbody> 
-</table>
+<div class="encart_produit d-flex m-5">
+    <div class="encart_produit_textes col-7">
+        <h1 class="text-center text-info m-5"> {{produit.titre}} </h1>
+        <p class="text-center">{{produit.description}}</p>
+    </div>
+    <div class="col-4 encart_produit_photo">
+        <img src="{{ vich_uploader_asset(produit) }}">
+    </div>
+</div>
 
 
-<h3> Les étapes de voyages</h3>
-<table class="table text-center">
-    <thead>
-        <th>titre</th>
-        <th>description</th>
-        <th>photo</th>
-        <th>hotel</th>
-    </thead>
-    <tbody>
+{# Les étapes #}
+        {% set j=0 %}
     {% for etape in produit.etapes %}
-        <tr>
-            <td>{{etape.titre}}</td>
-            <td>{{etape.description}}</td>
-            <td>{{etape.photo}}</td>
-            <td>{{etape.hotel}}</td>
-        </tr>
+
+        <div class="encart-etape d-flex justify-content-between">
+            <div class="encart-etape-jour d-flex align-items-center justify-content-center fw-bold bg-info rounded p-3 m-3 col-1"> Jour {{j}}</div>
+            <div class="encart-etape-textes m-3 col-6">
+                <h6 class="text-decoration-underline">{{etape.titre}}</h6>
+                <br>
+                {{etape.description}}
+                 <div class="encart-etape-textes-hotel ps-3 mt-2 bg-dark text-light rounded-pill align-self-end">
+                    {{etape.hotel}}
+                </div>
+            </div>
+            <div class="col-3 d-flex justify-content-end ">
+                <img height= 200px src="{{ vich_uploader_asset(etape) }}">
+            </div>
+        </div>
+        {% set j=(j+1) %}
     {% endfor %}
-</table>
 
+<div class="fw-bold text-center mb-4">
+    <h5>{{produit.prix}}€ / personne</h5>
+</div>
 
-<h3> Les produits similaires</h3>
-<table class="table text-center">
-    <thead>
-        <th>titre</th>
-        <th>description</th>
-    </thead>
-    <tbody>
-    <pre>
-    </pre>
+<div style="height:50px;" class="mx-auto fw-bold text-light bg-warning rounded-pill col-2 d-flex justify-content-center align-items-center">
+    <a class="text-reset text-decoration-none" href="{{path('front_reservation', {'id':produit.id}) }}">Reserver ce séjour</a>
+</div>
+
+<h5 class="text-info text-center m-5"> Les produits similaires</h5>
+
+     <div class="d-flex justify-content-around">
     {% for prod in prods %}
-        <tr>
-        
-            <td>{{prod.titre}}</td>
-            <td>{{prod.description}}</td>
-        </tr>
-    {% endfor %}
-</table>
 
-    </tbody> 
+            <div class="conseiller card d-flex justify-content-center p-3" style="width:24rem;">
+                <div class="conseiller">
+                    <a href="{{path('front_destination', {
+                    'id':produit.id
+                    }) }}">
+                        <img width=150px src="{{vich_uploader_asset(produit)}}" class="conseiller card-img-top mx-auto">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="text-center">
+                        <a class="text-reset text-decoration-none" href="{{path('front_produit', {'id':produit.id})}}">{{produit.titre}}{{produit.titre}}</a>
+                    </h5>
+                    <div class="text-center">
+                        <a class="text-reset text-decoration-none" href="{{path('front_destination', {
+                            'id':produit.id
+                            }) }}">
+                            {{produit.titre}}
+                        </a>
+                        <p class="text-warning fw-bold">Durée</p>
+                    </div>
+                    <p class="card-text"> Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+
+    {% endfor %}
+
+
 
 {% endblock %}
 

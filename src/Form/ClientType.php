@@ -28,7 +28,6 @@ class ClientType extends AbstractType
                 "ROLE_CLIENT" => "ROLE_CLIENT",
                 "ROLE_CONSEILLER" => "ROLE_CONSEILLER"
             ],
-
         ])
         ->add('adresse', TextType::class)
         ->add('ville', TextType::class)
