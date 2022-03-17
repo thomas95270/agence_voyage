@@ -17,12 +17,6 @@ class DestinationType extends AbstractType
         $builder
             ->add('titre', TextType::class)
             ->add('description', TextType::class)
-            ->add('produits', EntityType::class, [
-                'class' => Produit::class,
-                'multiple' => true,
-                'expanded' => true,
-                'choice_label' => 'titre'
-            ])
         ;
     }
 

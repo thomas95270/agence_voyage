@@ -3,47 +3,64 @@
 {% block title %}Reservations{% endblock %}
 
 {% block body %}
-    <h1>Gestion des Reservation</h1>
+    {% include "back/menu_back.html.twig" %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Reference</th>
-                <th>Date_reservation</th>
-                <th>Date_depart</th>
-                <th>Participants</th>
-                <th>Prix_total</th>
-                <th>Statut</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for reservation in reservations %}
-            <tr>
-                <td>{{ reservation.id }}</td>
-                <td>{{ reservation.reference }}</td>
-                <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ reservation.dateDepart ? reservation.dateDepart|date('Y-m-d') : '' }}</td>
-                <td>
-                    {% for participant in reservation.participants %}
-                        {{ participant.nom ~ " " ~ participant.prenom}}<br>
-                    {% endfor %}
-                </td>
-                <td>{{ reservation.prixTotal }}</td>
-                <td>{{ reservation.statut }}</td>
-                <td>
-                    <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}">Afficher</a>
-                    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">Pas de Réservation enregistrée</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="col-9">
 
-    <a href="{{ path('app_reservation_new') }}">Nouvelle Réservation</a>
+            <h1 class="text-center text-info m-5">Gestion des Reservation</h1>
+
+            <table class="table table_index text-center mx-auto">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Reference</th>
+                        <th>Date_reservation</th>
+                        <th>Date_depart</th>
+                        <th>Participants</th>
+                        <th>Prix_total</th>
+                        <th>Statut</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.id }}</td>
+                        <td>{{ reservation.reference }}</td>
+                        <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ reservation.dateDepart ? reservation.dateDepart|date('Y-m-d') : '' }}</td>
+                        <td>
+                            {% for participant in reservation.participants %}
+                                {{ participant.nom ~ " " ~ participant.prenom}}<br>
+                            {% endfor %}
+                        </td>
+                        <td>{{ reservation.prixTotal }}</td>
+                        <td>{{ reservation.statut }}</td>
+                        <td>
+                            <div class="text-light bg-dark rounded col-10 mx-auto">
+                                <a class="text-reset text-decoration-none text-light rounded"
+                                    href="{{ path('app_reservation_show', {'id': reservation.id}) }}">
+                                        voir
+                                </a>
+                            </div>
+                            <div class="bg-light rounded col-10 mx-auto">
+                                <a class="text-reset text-decoration-none rounded"
+                                    href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">
+                                        Modifier
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">Pas de Réservation enregistrée</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('app_reservation_new') }}">
+                Nouvelle Réservation
+            </a>
+        </div>
+    </div>
 {% endblock %}

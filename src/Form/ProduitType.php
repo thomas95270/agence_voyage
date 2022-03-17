@@ -25,18 +25,18 @@ class ProduitType extends AbstractType
             $builder
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
+            ->add('photoFile', VichImageType::class, [
+                'required' =>false,
+                'allow_delete' =>false,
+                'download_uri' =>false,
+                'image_uri' =>false
+                ])
             ->add('prix', IntegerType::class)
             ->add('destinations', EntityType::class, [
                 'class' => Destination::class,
                 'multiple' => true,
                 'expanded' => true,
                 'choice_label' => 'titre'
-                ])
-            ->add('photoFile', VichImageType::class, [
-                'required' =>false,
-                'allow_delete' =>false,
-                'download_uri' =>false,
-                'image_uri' =>false
                 ])
             ->add('etapes', CollectionType::class, [
                 'entry_type' => EtapeType::class,
@@ -48,6 +48,7 @@ class ProduitType extends AbstractType
         $builder
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
+            ->add('photoFile', VichImageType::class)
             ->add('prix', IntegerType::class)
             ->add('destinations', EntityType::class, [
                 'class' => Destination::class,
@@ -55,7 +56,6 @@ class ProduitType extends AbstractType
                 'expanded' => true,
                 'choice_label' => 'titre'
                 ])
-            ->add('photoFile', VichImageType::class)
             ->add('etapes', CollectionType::class, [
                 'entry_type' => EtapeType::class,
                 'allow_add' => true,

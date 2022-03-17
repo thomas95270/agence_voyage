@@ -58,7 +58,9 @@ class EtapeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $date=new \DateTime();
             $etape->setMaj($date);
+
             $etapeRepository->add($etape);
+            
             return $this->redirectToRoute('app_etape_index', [], Response::HTTP_SEE_OTHER);
         }
 

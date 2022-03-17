@@ -61,6 +61,7 @@ class DestinationController extends AbstractController
         return $this->renderForm('back/destination/edit.html.twig', [
             'destination' => $destination,
             'form' => $form,
+            'edit' =>true
         ]);
     }
 

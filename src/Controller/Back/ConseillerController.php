@@ -20,7 +20,6 @@ class ConseillerController extends AbstractController
     public function index(ConseillerRepository $conseillerRepository): Response
     {
         $conseillers = $conseillerRepository->findAll();
-        // dd($conseillers);
         return $this->render('back/conseiller/index.html.twig', [
             'conseillers' => $conseillers,
         ]);
@@ -50,7 +49,7 @@ class ConseillerController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_conseiller_show', methods: ['GET'])]
+    #[Route('/{id}/show', name: 'app_conseiller_show', methods: ['GET'])]
     public function show(Conseiller $conseiller): Response
     {
         return $this->render('back/conseiller/show.html.twig', [

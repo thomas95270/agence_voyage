@@ -3,40 +3,84 @@
 {% block title %}Reservation{% endblock %}
 
 {% block body %}
-    <h1>Reservation</h1>
+    {% include "back/menu_back.html.twig" %}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ reservation.id }}</td>
-            </tr>
-            <tr>
-                <th>Reference</th>
-                <td>{{ reservation.reference }}</td>
-            </tr>
-            <tr>
-                <th>Date_reservation</th>
-                <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date_depart</th>
-                <td>{{ reservation.dateDepart ? reservation.dateDepart|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Prix_total</th>
-                <td>{{ reservation.prixTotal }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ reservation.statut }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h1 class="text-center text-info m-5">Reservation</h1>
 
-    <a href="{{ path('app_reservation_index') }}">Retour à la liste des réservations</a>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body d-flex">
+                <div>
+                    <p class="card-text"><em>Référence </em> -</p> 
+                </div>
+                <div class="ms-3">
+                    {{reservation.reference }}
+                </div>
+            </div>
+            <div class="card-body d-flex">
+                <div>
+                    <p class="card-text"><em>Produit</em> -</p> 
+                </div>
+                <div class="ms-3">
+                    {{reservation.produit.titre }}
+                </div>
+            </div>
+            <div class="card-body d-flex">
+                <div>
+                    <p class="card-text"><em>Destination</em> -</p> 
+                </div>
+                <div class="ms-3">
+                    {% for destination in reservation.produit.destinations %}
+                        {{destination.titre }}<br>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-body d-flex">
+                <div>
+                    <p class="card-text"><em>Départ</em> -</p> 
+                </div>
+                <div class="ms-3">
+                    {{ reservation.dateDepart ? reservation.dateDepart|date('Y-m-d') : '' }}
+                </div>
+            </div>
+            <div class="card-body d-flex">
+                <div>
+                    <p class="card-text"><em>Participants</em> -</p> 
+                </div>
+                <div class="ms-3">
+                    {{reservation.participants|length }}
+                </div>
+            </div>
+            <div class="card-body d-flex">
+                <div>
+                    <p class="card-text"><em>Statut</em> -</p> 
+                </div>
+                <div class="ms-3">
+                    {{ reservation.statut }}
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Modifier</a>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body d-flex">
+            <div>
+                {# <p class="card-text text-center m-3"> {{reservation.client.prenom ~ " " ~ reservation.client.nom}} #}
+            </div>
+            <div>
+                {# <p class="card-text text-center"> {{reservation.client.adresse ~ " " ~ cp}} #}
+            </div>
+            <div>
+                {# <p class="card-text text-center"> {{reservation.client.cp ~ " - " ~ reservation.client.ville}} #}
+            </div>
+            <div>
+                {# <p class="card-text text-center m-3">Email :  {{reservation.client.email}} #}
+            </div>
+            <div>
+                {# <p class="card-text text-center m-3">Tel :  {{reservation.client.tel}} #}
+            </div>
 
-    {{ include('back/reservation/_delete_form.html.twig') }}
+        </div>
+
+
+    </div>
 {% endblock %}

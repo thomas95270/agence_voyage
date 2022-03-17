@@ -37,7 +37,7 @@ class Etape
     #[ORM\Column(type: 'string', length: 255)]
     private $hotel;
 
-    #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'etapes')]
+    #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'etapes', cascade:["persist"])]
     private $produit;
 
     public function getId(): ?int

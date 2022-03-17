@@ -3,9 +3,13 @@
 {% block title %}Destination{% endblock %}
 
 {% block body %}
-    <h1>Nouvelle Destination</h1>
+{% include "back/menu_back.html.twig" %}
 
-    {{ include('back/destination/_form.html.twig') }}
+    <div class="col-6 mx-auto">
+        <h1 class="text-center text-info m-5">Nouvelle Destination</h1>
 
-    <a href="{{ path('app_destination_index') }}">Retour aux destinations</a>
+        {{ include('back/destination/_form.html.twig') }}
+    </div>
+
+</div></div>
 {% endblock %}

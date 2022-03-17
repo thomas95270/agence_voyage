@@ -7,8 +7,10 @@
       <ul class="navbar-nav">
           <li class="col-3">
             <div id="logo" class="rounded-circle bg-dark">
-                <h4 class="text-warning" >Escapade Tour</h4>
-                <p class="h6 text-light">Votre spécialiste du voyage</p>
+              <a class="nav-link active" aria-current="page" href="{{path('accueil')}}">
+                  <h4 class="text-warning" >Escapade Tour</h4>
+                  <p class="h6 text-light">Votre spécialiste du voyage</p>
+              </a>
             </div>
           </li>
 
@@ -28,19 +30,8 @@
       
           {% if app.user %}
               {% if "ROLE_ADMIN" in app.user.roles %}
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="{{path('admin')}}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Admin
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <li><a class="dropdown-item" href="{{path('app_client_index')}}"> Gestion des clients</a></li>
-                          <li><a class="dropdown-item" href="{{path('app_destination_index')}}"> Gestion des destinations</a></li>
-                          <li><a class="dropdown-item" href="{{path('app_conseiller_index')}}"> Gestion des conseillers</a></li>
-                          <li><a class="dropdown-item" href="{{path('app_etape_index')}}"> Gestion des étapes</a></li>
-                          <li><a class="dropdown-item" href="{{path('app_produit_index')}}"> Gestion des produits</a></li>
-                          <li><a class="dropdown-item" href="{{path('app_reservation_index')}}">Gestion des Réservations</a>
-                          <li><a class="dropdown-item" href="{{path('app_participant_index')}}">Gestion des Participants</a>
-                      </ul>
+                  <li  class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{path('admin')}}"> Admin</a>
                   </li>
               {% endif %}
 
@@ -50,9 +41,6 @@
               </li>
           {% endif %}
 
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{path('accueil')}}">Accueil</a>
-        </li>
           {% if app.user %}
 
               <li class="nav-item">

@@ -1,14 +1,14 @@
 $(document).ready(() => {
 	let containerEtapes = $(".container-etapes");
 	let addNewEtape = $(
-	 	"<button class='btn btn-success text-light' href='#'>Ajouter une nouvelle étape</button>"
+		"<button class='btn btn-secondary text-light' href='#'>Ajouter une nouvelle étape</button>"
 	);
 	containerEtapes.append(addNewEtape);
 	containerEtapes.data("index", containerEtapes.find(".card-etape").length);
 
 	let containerParticipants = $(".container-participants");
 	let addNewParticipant = $(
-		"<a class='btn btn-success text-light' href='#'>Ajouter un autre participant</a>"
+		"<a class='btn btn-secondary text-light m-3' href='#'>Ajouter un autre participant</a>"
 	);
 
 	containerParticipants.append(addNewParticipant);
@@ -53,7 +53,7 @@ $(document).ready(() => {
 	}
 
 	containerEtapes.find(".card-etape").each(function () {
-		addRemoveButton($(this))
+		addRemoveButton($(this));
 	});
 
 	/** ***********************************AJOUT BOUTON Participant AU FORMULAIRE DE RESERVATION***************************************************** */
@@ -92,9 +92,8 @@ $(document).ready(() => {
 			});
 		});
 	}
-	containerParticipants
-		.find(".card-participant")
-		.each(function () {
-			addRemoveButtonParticipant($(this))
-		});addRemoveButtonParticipant($(this))
+	containerParticipants.find(".card-participant").each(function () {
+		addRemoveButtonParticipant($(this));
+	});
+	addRemoveButtonParticipant($(this));
 });

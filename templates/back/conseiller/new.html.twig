@@ -3,9 +3,14 @@
 {% block title %}Conseiller{% endblock %}
 
 {% block body %}
-    <h1>Nouveau Conseiller</h1>
+
+
+{% include "back/menu_back.html.twig" %}
+
+    <h1 class="text-center text-info m-5">Nouveau Conseiller</h1>
 
     {{ include('back/conseiller/_form.html.twig') }}
 
     <a href="{{ path('app_conseiller_index') }}">Retour à la liste des conseiller</a>
+    </div></div>
 {% endblock %}

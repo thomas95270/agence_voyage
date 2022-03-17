@@ -3,9 +3,12 @@
 {% block title %}Clients{% endblock %}
 
 {% block body %}
-    <h1>Gestion des Clients</h1>
 
-    <table class="table text-center">
+   {% include "back/menu_back.html.twig" %}
+
+    <h1 class="text-center text-info m-5">Index Clients</h1>
+
+    <table class="table table_index text-center mx-auto">
         <thead>
             <tr>
                 <th>Id</th>
@@ -37,8 +40,12 @@
                 <td>{{ client.cp }}</td>
                 <td>{{ client.tel }}</td>
                 <td>
-                    <a href="{{ path('app_client_show', {'id': client.id}) }}">Afficher</a>
-                    <a href="{{ path('app_client_edit', {'id': client.id}) }}">Modifier</a>
+                    <div class="text-light bg-dark rounded col-11 mx-auto">
+                        <a class="text-reset text-decoration-none text-light bg-dark rounded"
+                        href="{{ path('app_client_show', {'id': client.id}) }}">
+                            voir
+                        </a>
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -50,4 +57,5 @@
     </table>
 
     <a href="{{ path('app_client_new') }}">Nouveau Client</a>
+    </div></div>
 {% endblock %}

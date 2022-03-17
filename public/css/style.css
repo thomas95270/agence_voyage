@@ -19,6 +19,8 @@ nav {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	top: 0; /* Stay at the top */
+	left: 0;
 }
 .photo {
 	background-image: url("../../img/NY_jour.jpg");
@@ -32,4 +34,24 @@ nav {
 
 .conseiller {
 	border-radius: 25px;
+}
+
+/* *********************************************************************BACK */
+.container_back {
+}
+.menu_lateral {
+	background-color: gainsboro;
+	width: 200px;
+	height: 720px;
+}
+
+.table_index {
+	border: solid 2px slategray;
+}
+.table_index th {
+	background-color: gainsboro;
+	border: solid 1px slategray;
+}
+.table_index td {
+	border: solid 1px slategray;
 }

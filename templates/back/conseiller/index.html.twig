@@ -3,22 +3,23 @@
 {% block title %}Conseillers{% endblock %}
 
 {% block body %}
-    <h1>Gestion des Conseillers</h1>
 
-    <table class="table">
+{% include "back/menu_back.html.twig" %}
+
+    <h1 class="text-center text-info m-5">Index Conseiller</h1>
+
+    <a class="btn btn-success text-light mb-3" href="{{ path('app_conseiller_new') }}">Nouveau Conseiller</a>
+
+    <table class="table table_index text-center mx-auto">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Nom</th>
                 <th>Prenom</th>
+                <th>Nom</th>
                 <th>Photo</th>
                 <th>Referent</th>
-                <th>Specialité</th>
                 <th>Description</th>
-                <th>Maj</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,20 +28,26 @@
             <tr>
                 <td>{{ conseiller.id }}</td>
                 <td>{{ conseiller.email }}</td>
-                <td>{{ conseiller.roles ? conseiller.roles|json_encode : '' }}</td>
-                <td>{{ conseiller.password }}</td>
-                <td>{{ conseiller.nom }}</td>
                 <td>{{ conseiller.prenom }}</td>
-                <td>
+                <td>{{ conseiller.nom }}</td>
+                <td class="col-1">
                     <img height=100px src="{{ vich_uploader_asset(conseiller) }}">
                 </td>
                 <td>{{ conseiller.referent ? 'Yes' : 'No' }}</td>
-                <td>{{ conseiller.specialite.titre }}</td>
-                <td>{{ conseiller.description }}</td>
-                <td>{{ conseiller.maj ? conseiller.maj|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_conseiller_show', {'id': conseiller.id}) }}">Afficher</a>
-                    <a href="{{ path('app_conseiller_edit', {'id': conseiller.id}) }}">Modifier</a>
+                <td class="col-4">{{ conseiller.description }}</td>
+                <td  class="col-1">
+                    <div class="text-light bg-dark rounded col-10 mx-auto">
+                        <a class="text-reset text-decoration-none text-light rounded"
+                            href="{{ path('app_conseiller_show', {'id': conseiller.id}) }}">
+                                voir
+                        </a>
+                    </div>
+                    <div class="bg-light rounded col-10 mx-auto">
+                        <a class="text-reset text-decoration-none rounded"
+                            href="{{ path('app_conseiller_edit', {'id': conseiller.id}) }}">
+                                Modifier
+                        </a>
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -51,5 +58,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_conseiller_new') }}">Nouveau Conseiller</a>
+    </div></div>
 {% endblock %}

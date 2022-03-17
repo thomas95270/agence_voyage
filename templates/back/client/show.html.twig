@@ -3,48 +3,28 @@
 {% block title %}Client{% endblock %}
 
 {% block body %}
-    <h1>Client</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ client.email }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ client.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ client.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ client.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ client.ville }}</td>
-            </tr>
-            <tr>
-                <th>Cp</th>
-                <td>{{ client.cp }}</td>
-            </tr>
-            <tr>
-                <th>Tel</th>
-                <td>{{ client.tel }}</td>
-            </tr>
-        </tbody>
-    </table>
+   {% include "back/menu_back.html.twig" %}
 
-    <a href="{{ path('app_client_index') }}">Retour à la liste des clientst</a>
+  
+        <div class="card col-8 offset-2 mt-5">
+                <h2 class="card-title bg-info text-light text-center p-2 mb-5  fw-bold">Coordonnées</h2>
+                <div class="card-body">
+                    <p class="card-text  fw-bold">{{ client.prenom ~ " " ~ client.nom }}</p>
+                    <p class="card-text">Adresse: {{ client.adresse ~ " - " ~ client.cp ~ " - "}}{{client.ville|upper }}</p>
+                    <p class="card-text">Telephone : {{ client.tel }}</p>
+                    <p class="card-text">Email : {{ client.Email }}</p>
+                </div>
+        </div>
+        <div class="text-center m-3">
+            <p>
+                <a href="{{ path('app_client_edit', {'id': client.id}) }}">Modifier</a>
+            </p>
+            <p>
+                {{ include('back/client/_delete_form.html.twig') }}
+            </p>
 
-    <a href="{{ path('app_client_edit', {'id': client.id}) }}">Modifier</a>
-
-    {{ include('back/client/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 {% endblock %}

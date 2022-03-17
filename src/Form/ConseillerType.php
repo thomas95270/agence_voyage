@@ -22,10 +22,17 @@ class ConseillerType extends AbstractType
     {
         if($options['edit'] == true){
             $builder
-                ->add('nom', TextType::class)
-                ->add('prenom', TextType::class)
                 ->add('email', EmailType::class)
-                ->add('password', PasswordType::class)
+                ->add('roles', ChoiceType::class, [
+                    'multiple' => true,
+                    'expanded' => true,
+                    'choices' => [
+                        "Conseiller" => "ROLE_CONSEILLER",
+                        "Administrateur" => "ROLE_ADMIN",
+                    ],
+                ])
+                ->add('prenom', TextType::class)
+                ->add('nom', TextType::class)
                 ->add('photoFile', VichImageType::class, [
                     'required' =>false,
                     'allow_delete' =>false,
@@ -36,7 +43,9 @@ class ConseillerType extends AbstractType
                     'choices' => [
                         'oui' => true,
                         'non' => false
-                        ]
+                    ],
+                    'multiple' => false,
+                    'expanded' => true,
                     ])
                 ->add('description', TextareaType::class)
                 ->add('specialite', EntityType::class, [
@@ -47,16 +56,26 @@ class ConseillerType extends AbstractType
             ;
         } else{
             $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
+            ->add('roles', ChoiceType::class, [
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => [
+                    "Conseiller" => "ROLE_CONSEILLER",
+                    "Administrateur" => "ROLE_ADMIN",
+                ],
+            ])
+            ->add('prenom', TextType::class)
+            ->add('nom', TextType::class)
             ->add('photoFile', VichImageType::class)
             ->add('referent', ChoiceType::class,[
                 'choices' => [
-                    'oui' => true,
-                    'non' => false
-                    ]
+                    'non référent' => false,
+                    'référent' => true,
+                    ],
+                'multiple' => false,
+                'expanded' => true,
                 ]
             )
             ->add('description', TextareaType::class)

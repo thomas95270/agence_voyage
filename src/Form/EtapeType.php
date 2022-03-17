@@ -24,20 +24,16 @@ class EtapeType extends AbstractType
                 'choice_label' => 'titre'
                 ])
             ->add('photoFile', VichImageType::class, [
-                'required' =>false,
-                'allow_delete' =>false,
-                'download_uri' =>false,
-                'image_uri' =>false
+                'required' => false,
+                'allow_delete' => false,
+                'download_uri' => false,
+                'image_uri' => false
             ]);
         }else{
         $builder
             ->add('titre')
             ->add('description')
             ->add('hotel')
-            ->add('produit', EntityType::class, [
-                'class' => Produit::class,
-                'choice_label' => 'titre'
-                ])
             ->add('photoFile', VichImageType::class)
         ;}
     }

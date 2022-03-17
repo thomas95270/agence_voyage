@@ -3,5 +3,47 @@
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-<h1> Espace Administratuer</h1>
+    {% include "back/menu_back.html.twig" %}
+{# --------necessaire d'ajouter (</div></div>) avant {% endblock body %} #}
+
+{# ----------------------------------------ESPACE PRINCIPAL #}
+    <h1 class="text-center text-info m-5"> Nouvelles Réservations</h1>
+
+    <table class='table table_index text-center mx-auto'>
+        {% if reservations is defined %}
+
+            <thead>
+                <th>Reference</th>
+                <th>Produit</th>
+                {# <th>Nom Client</th> #}
+                <th>Statut</th>
+                <th>action</th>
+            </thead>
+
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{reservation.reference}}</td>
+                    <td>{{reservation.produit.titre}}</td>
+                    {# <td>{{reservation.client.nom}} Client</th> #}
+                    <td>{{reservation.statut}}</td>
+                    <td>
+                        <div class="text-light bg-dark rounded col-6 mx-auto">
+                            <a class="text-reset text-decoration-none text-light bg-dark rounded"
+                                href="{{ path('app_reservation_show', {'id': reservation.id}) }}">
+                                voir
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+            <div class="alert alert-warning">Il n'y a pas de nouvelle réservation</div>
+        {% endif %}
+</main>
+</div>
+
 {% endblock %}

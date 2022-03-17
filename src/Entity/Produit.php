@@ -41,10 +41,10 @@ class Produit
     #[ORM\Column(type: 'integer')]
     private $prix;
 
-    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'produits')]
+    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'produits', cascade:["persist"])]
     private $destinations;
 
-    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Etape::class)]
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Etape::class, cascade:["persist"])]
     private $etapes;
 
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Reservation::class)]

@@ -25,7 +25,7 @@ class Destination
     #[ORM\OneToMany(mappedBy: 'specialite', targetEntity: Conseiller::class)]
     private $conseillers;
 
-    #[ORM\ManyToMany(targetEntity: Produit::class, mappedBy: 'destinations')]
+    #[ORM\ManyToMany(targetEntity: Produit::class, mappedBy: 'destinations', cascade:["persist"])]
     private $produits;
 
     public function __construct()

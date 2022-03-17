@@ -1,13 +1,21 @@
 {{ form_start(form) }}
-    {{ form_label(form.etapes) }}
-        <div class="container-etapes" data-prototype="{{ form_widget(form.etapes.vars.prototype)|e('html_attr') }}">
-        {% for row in form.etapes %}
-            <div class="card-etape">
-                {{ form_widget(row) }}
-            </div>
-        {% endfor %}
-    </div>
 
-    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    {{ form_row(form.titre) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.photoFile) }}
+    {{ form_row(form.prix) }}
+    {{ form_row(form.destinations) }}
+
+        {# creation d'une etape #}
+        <div class="container-etapes" data-prototype="{{ form_widget(form.etapes.vars.prototype)|e('html_attr') }}">
+            {% for row in form.etapes %}
+                <div class="card-etape">
+                    {{ form_widget(row) }}
+                </div>
+            {% endfor %}
+        </div>
+
+
+    <button class="btn btn-success rounded mt-3">{{ button_label|default('Enregistrer') }}</button>
 
 {{ form_end(form) }}

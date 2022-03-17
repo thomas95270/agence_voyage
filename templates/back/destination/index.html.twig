@@ -3,9 +3,15 @@
 {% block title %}Destination{% endblock %}
 
 {% block body %}
-    <h1>Gestion des Destination</h1>
+{% include "back/menu_back.html.twig" %}
 
-    <table class="table">
+    <h1 class="text-center text-info m-5">Gestion des Destination</h1>
+
+    <div>
+        <a class="btn btn-success mb-3" href="{{ path('app_destination_new') }}">Nouvelle Destination</a>
+    </div>
+    <table class="table table_index text-center mx-auto">
+
         <thead>
             <tr>
                 <th>Id</th>
@@ -20,9 +26,19 @@
                 <td>{{ destination.id }}</td>
                 <td>{{ destination.titre }}</td>
                 <td>{{ destination.description }}</td>
-                <td>
-                    <a href="{{ path('app_destination_show', {'id': destination.id}) }}">Afficher</a>
-                    <a href="{{ path('app_destination_edit', {'id': destination.id}) }}">Modifier</a>
+                <td  class="col-1">
+                    <div class="text-light bg-dark rounded col-10 mx-auto">
+                        <a class="text-reset text-decoration-none text-light rounded"
+                            href="{{ path('app_destination_show', {'id': destination.id}) }}">
+                                voir
+                        </a>
+                    </div>
+                    <div class="bg-light rounded col-10 mx-auto">
+                        <a class="text-reset text-decoration-none rounded"
+                            href="{{ path('app_destination_edit', {'id': destination.id}) }}">
+                                Modifier
+                        </a>
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +49,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_destination_new') }}">Nouvelle Destination</a>
+
+    </div>
+    </div>
 {% endblock %}

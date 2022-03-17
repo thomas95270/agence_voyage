@@ -3,16 +3,17 @@
 {% block title %}Produits{% endblock %}
 
 {% block body %}
-    <h1>Gestion des Produits</h1>
+{% include "back/menu_back.html.twig" %}
 
-    <table class="table">
+    <h1 class="text-center text-info m-5">Gestion des Produits</h1>
+    <a class="btn btn-success mb-3" href="{{ path('app_produit_new') }}">Nouveau Produit</a>
+    <table class="table table_index text-center mx-auto">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Photo</th>
-                <th>Maj</th>
                 <th>Prix</th>
                 <th>actions</th>
             </tr>
@@ -26,11 +27,20 @@
                 <td>
                     <img height=100px src="{{vich_uploader_asset(produit)}}" alt="">
                 </td>
-                <td>{{ produit.maj ? produit.maj|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ produit.prix }}</td>
-                <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+                <td><em> {{ produit.prix }}€ / personne </em></td>
+                    <td  class="col-1">
+                    <div class="text-light bg-dark rounded col-10 mx-auto">
+                        <a class="text-reset text-decoration-none text-light rounded"
+                            href="{{ path('app_produit_show', {'id': produit.id}) }}">
+                                voir
+                        </a>
+                    </div>
+                    <div class="bg-light rounded col-10 mx-auto">
+                        <a class="text-reset text-decoration-none rounded"
+                            href="{{ path('app_produit_edit', {'id': produit.id}) }}">
+                                Modifier
+                        </a>
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +51,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_new') }}">Nouveau Produit</a>
+
+    </div>
+    </div>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller\Back;
 
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use App\Repository\EtapeRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,7 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProduitRepository $produitRepository): Response
+    public function new(Request $request, ProduitRepository $produitRepository, EtapeRepository $etapeRepository): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
@@ -34,6 +35,7 @@ class ProduitController extends AbstractController
 
             $etapes = $form->getData()->getEtapes();
            foreach ($etapes as $etape) {
+                $etapeRepository->add($etape);
                 $etape->setProduit($produit);
                 $produit->addEtape($etape);
            }
