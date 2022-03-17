@@ -23,19 +23,15 @@ class ReservationFrontType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('reference', TextType::class)
-            ->add('date_depart', DateType::class)
-            ->add('prix_total', IntegerType::class)
-            ->add('produit', EntityType::class, [
-                'class' => Produit::class,
-                'choice_label' => 'titre',
-                'multiple' => false,
-                'expanded' => true
+            ->add('date_depart', DateType::class,[
+                'widget' => 'single_text',
+                'label' => 'Sélectionner la date de départ'
             ])
             ->add('participants', CollectionType::class, [
                 'entry_type' => ParticipantType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
+                'label' => false
             ])
         ;
     }

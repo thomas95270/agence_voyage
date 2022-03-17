@@ -33,7 +33,28 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             {% for reservation in user.reservations %}
-                                {{reservation.produit  }}
+
+                                {% if reservation.statut == "Validé" %}
+                                    <div>
+                                        Référence : {{reservation.reference  }}
+                                    </div>
+                                    <div>
+                                        Référence : {{reservation.produit.titre}}
+                                    </div>
+                                    <div>
+                                        Date de depart : {{reservation.statut}}
+                                    </div>
+                                    <div>
+                                        {# nombre de participants : {{count(reservation.participants)}} #}
+                                    </div>
+                                    <div>
+                                        Total de la réservation :
+                                        {{reservation.prix_total}}
+                                    </div>
+                                    
+                                    
+                                {% endif %}
+                                
                             {% endfor %}
                         </div>
                     </div>
@@ -50,7 +71,25 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             {% for reservation in user.reservations %}
-                                {{reservation.produit  }}
+                                {% if reservation.statut == "En Attente" %}
+ <div>
+                                        Référence : {{reservation.reference  }}
+                                    </div>
+                                    <div>
+                                        Référence : {{reservation.produit.titre}}
+                                    </div>
+                                    <div>
+                                        Date de depart : {{reservation.statut}}
+                                    </div>
+                                    <div>
+                                        {# nombre de participants : {{count(reservation.participants)}} #}
+                                    </div>
+                                    <div>
+                                        Total de la réservation :
+                                        {# {{reservation.prix_total}} #}
+                                    </div>
+                                    
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -67,7 +106,25 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             {% for reservation in user.reservations %}
-                                {{reservation.produit  }}
+                                {% if reservation.statut == "Terminé" %}
+                                <div>
+                                        Référence : {{reservation.reference  }}
+                                    </div>
+                                    <div>
+                                        Référence : {{reservation.produit.titre}}
+                                    </div>
+                                    <div>
+                                        Date de depart : {{reservation.statut}}
+                                    </div>
+                                    <div>
+                                        {# nombre de participants : {{count(reservation.participants)}} #}
+                                    </div>
+                                    <div>
+                                        Total de la réservation :
+                                        {{reservation.prix_total}}
+                                    </div>
+                                    
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>

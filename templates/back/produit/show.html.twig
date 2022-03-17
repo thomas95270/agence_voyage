@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produits{% endblock %}
+{% block title %}Produits | {{ produit.titre }}{% endblock %}
 
 {% block body %}
-    <h1>Produit | {{ produit.titre }}</h1>
+    {% include "back/menu_back.html.twig" %}
 
-    <table class="table">
+    <h1 class="text-center text-info m-5">{{ produit.titre }}</h1>
+
+    <a class="btn btn-warning mb-3" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+
+    <table class="table table_index text-center mx-auto">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -21,7 +25,9 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                <td>{{ produit.photo }}</td>
+                <td>
+                    <img height=150px src="{{vich_uploader_asset(produit) }}"
+                </td>
             </tr>
             <tr>
                 <th>Maj</th>
@@ -29,14 +35,43 @@
             </tr>
             <tr>
                 <th>Prix</th>
-                <td>{{ produit.prix }}</td>
+                <td>{{ produit.prix }}€ / personne</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_index') }}">Retour à la liste des Produits</a>
 
-    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifiert</a>
+    <h3 class="text-center text-info m-5">Liste des étapes</h3>
 
-    {{ include('back/produit/_delete_form.html.twig') }}
+    <table class="table table_index text-center mx-auto">
+        <thead>
+                <th>Jour</th>
+                <th>Titre</th>
+                <th>Photo</th>
+                <th>Description</th>
+                <th>Hotel</th>
+        </thead>
+        <tbody>
+        {% set jour = 0 %}
+        {% for etape in produit.etapes %}
+        {% set jour = jour+1 %}
+        <tr>
+                <td>{{ jour }}</td>
+                <td>{{ etape.titre }}</td>
+                <td>
+                    <img height=150px src="{{vich_uploader_asset(etape) }}"
+                </td>
+                <td>{{ etape.description }}</td>
+
+                <td>{{ etape.hotel }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <div class="d-flex justify-content-center">
+        {{ include('back/produit/_delete_form.html.twig') }}
+    </div>
+    </div></div>
 {% endblock %}

@@ -31,14 +31,11 @@ class ReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $date_reservation = new \DateTime();
-            $reservation->setDateReservation($date_reservation);
-            
             $reservation->setStatut('En Attente');
 
             $participants = $form->getData()->getParticipants();
+
             foreach ($participants as $participant) {
-                $participant->setReservation($reservation);
                 $reservation->addParticipant($participant);
                 
             }

@@ -33,15 +33,13 @@ class Produit
      */
     private $photoFile;
 
-
-
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $maj;
 
     #[ORM\Column(type: 'integer')]
     private $prix;
 
-    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'produits', cascade:["persist"])]
+    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'produits')]
     private $destinations;
 
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Etape::class, cascade:["persist"])]
@@ -56,7 +54,12 @@ class Produit
         $this->etapes = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
+    public function __toString()
+    {
+        return $this->titre;
+    }
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -91,7 +94,7 @@ class Produit
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
@@ -222,6 +225,10 @@ class Produit
     public function setPhotoFile($photoFile)
     {
         $this->photoFile = $photoFile;
+
+        if ($photoFile !== null) {
+            $this->maj = new \DateTimeImmutable();
+        }
 
         return $this;
     }

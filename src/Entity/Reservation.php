@@ -15,7 +15,7 @@ class Reservation
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'reservations')]
+    #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'reservations', cascade:["persist"])]
     private $produit;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -27,10 +27,10 @@ class Reservation
     #[ORM\Column(type: 'date')]
     private $date_depart;
 
-    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'reservations')]
+    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'reservations', cascade:["persist"])]
     private $client;
 
-    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Participant::class)]
+    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Participant::class, cascade:["persist"])]
     private $participants;
 
     #[ORM\Column(type: 'integer')]
@@ -66,7 +66,7 @@ class Reservation
         return $this->reference;
     }
 
-    public function setReference(string $reference): self
+    public function setReference(?string $reference): self
     {
         $this->reference = $reference;
 

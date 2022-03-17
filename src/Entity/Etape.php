@@ -33,10 +33,10 @@ class Etape
 
     #[ORM\Column(type: 'text')]
     private $description;
-
+    
     #[ORM\Column(type: 'string', length: 255)]
     private $hotel;
-
+    
     #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'etapes', cascade:["persist"])]
     private $produit;
 
@@ -62,7 +62,7 @@ class Etape
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
@@ -134,6 +134,9 @@ class Etape
     {
         $this->photoFile = $photoFile;
 
+        if ($photoFile !== null) {
+            $this->maj = new \DateTimeImmutable();
+        }
         return $this;
     }
 }

@@ -1,16 +1,31 @@
 {{ form_start(form) }}
 
+    <div class="container-participants" data-prototype="{{ form_widget(form.participants.vars.prototype)|e('html_attr') }}">
 
-        <div class="container-participants" data-prototype="{{ form_widget(form.participants.vars.prototype)|e('html_attr') }}">
+        <div class="text-center">
+            {{ form_label(form.date_depart) }}
+        </div>
+        <div class="col-4 mx-auto">
+            {{ form_widget(form.date_depart) }}
+        </div>
 
-        {% for row in form.participants %}
-            <div class="card-participant">
-                {{ form_widget(row) }}
-            </div>
-        {% endfor %}
+        <h6 class="text-center m-3">Ajoutez des participants à votre réservation</h6>
+
+        <div class="d-flex justify-content-around">
+
+            {% set numero = 0 %} 
+            {% for participant in form.participants %}
+                {% set numero = numero + 1 %} 
+                <div class="card-participant">
+                    {{ form_widget(participant) }}
+                </div>
+            {% endfor %}
+
+        </div>
     </div>
+
     <div class="d-flex justify-content-center">
-        <button class="btn btn-warning text-light rounded-pill  mb-3">{{ button_label|default('Enregistrer') }}</button>
+        <button class="btn btn-success text-light rounded mb-3">{{ button_label|default('Validez votre réservation') }}</button>
     </div>
 
 {{ form_end(form) }}

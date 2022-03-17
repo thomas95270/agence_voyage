@@ -2,20 +2,33 @@
 
     {{ form_row(form.titre) }}
     {{ form_row(form.description) }}
-    {{ form_row(form.photoFile) }}
+    {{ form_label(form.photoFile) }}
+    {{ form_widget(form.photoFile) }}
+
+<div class="mt-3">
+    <img height=100px src="{{vich_uploader_asset(produit)}}">
+</div>
     {{ form_row(form.prix) }}
+
     {{ form_row(form.destinations) }}
 
         {# creation d'une etape #}
         <div class="container-etapes" data-prototype="{{ form_widget(form.etapes.vars.prototype)|e('html_attr') }}">
+            {% set etapeNo = 0 %}
             {% for row in form.etapes %}
+                {% set etapeNo = etapeNo + 1 %}
                 <div class="card-etape">
+                    <div class="bg-warning p-2 mt-3 mb-3 rounded">
+                        Etape {{etapeNo}}
+                    </div>
                     {{ form_widget(row) }}
                 </div>
+
             {% endfor %}
         </div>
 
 
-    <button class="btn btn-success rounded mt-3">{{ button_label|default('Enregistrer') }}</button>
+    <button class="btn btn-warning rounded mt-3">{{ button_label|default('Modifier') }}</button>
+
 
 {{ form_end(form) }}

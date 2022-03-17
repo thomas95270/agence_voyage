@@ -108,6 +108,10 @@ class Conseiller extends User
      */ 
     public function setPhotoFile($photoFile)
     {
+        
+        if ($photoFile !== null) {
+            $this->maj = new \DateTimeImmutable();
+        }
         $this->photoFile = $photoFile;
 
         return $this;

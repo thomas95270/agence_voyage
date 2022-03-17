@@ -23,22 +23,20 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProduitRepository $produitRepository, EtapeRepository $etapeRepository): Response
+    public function new(Request $request, ProduitRepository $produitRepository): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
-
+        //dd($form->getData());
         if ($form->isSubmitted() && $form->isValid()) {
-            $date=new \DateTime();
-            $produit->setMaj($date);
+            // $date=new \DateTime();
+            // $produit->setMaj($date);
 
             $etapes = $form->getData()->getEtapes();
-           foreach ($etapes as $etape) {
-                $etapeRepository->add($etape);
-                $etape->setProduit($produit);
+            foreach ($etapes as $etape) {
                 $produit->addEtape($etape);
-           }
+            }
 
             $produitRepository->add($produit);
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
@@ -61,12 +59,14 @@ class ProduitController extends AbstractController
     #[Route('/{id}/edit', name: 'app_produit_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
-        $form = $this->createForm(ProduitType::class, $produit);
+        $form = $this->createForm(ProduitType::class, $produit, [
+            'edit' => true
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $date=new \DateTime();
-            $produit->setMaj($date);
+            // $date=new \DateTime();
+            // $produit->setMaj($date);
 
             $etapes = $form->getData()->getEtapes();
 
@@ -81,8 +81,7 @@ class ProduitController extends AbstractController
 
         return $this->renderForm('back/produit/edit.html.twig', [
             'produit' => $produit,
-            'form' => $form,
-            'edit' => true
+            'form' => $form
         ]);
     }
 

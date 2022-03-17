@@ -22,8 +22,14 @@ class Participant
     #[ORM\Column(type: 'date')]
     private $date_naissance;
 
-    #[ORM\ManyToOne(targetEntity: Reservation::class, inversedBy: 'Participants')]
+    #[ORM\ManyToOne(targetEntity: Reservation::class, inversedBy: 'Participants', cascade:["persist"])]
     private $reservation;
+
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
 
 
     public function getId(): ?int

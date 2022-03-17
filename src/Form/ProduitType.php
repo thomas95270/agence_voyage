@@ -26,6 +26,7 @@ class ProduitType extends AbstractType
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
             ->add('photoFile', VichImageType::class, [
+                'label' => 'Photo',
                 'required' =>false,
                 'allow_delete' =>false,
                 'download_uri' =>false,
@@ -48,7 +49,9 @@ class ProduitType extends AbstractType
         $builder
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('photoFile', VichImageType::class)
+            ->add('photoFile', VichImageType::class, [
+                'label' => 'Photo'
+            ])
             ->add('prix', IntegerType::class)
             ->add('destinations', EntityType::class, [
                 'class' => Destination::class,

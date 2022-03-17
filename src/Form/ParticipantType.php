@@ -14,9 +14,11 @@ class ParticipantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenom', TextType::class)
             ->add('nom', TextType::class)
-            ->add('date_naissance', DateType::class)
+            ->add('prenom', TextType::class)
+            ->add('date_naissance', DateType::class, [
+                'widget' => 'single_text'
+            ])
         ;
     }
 

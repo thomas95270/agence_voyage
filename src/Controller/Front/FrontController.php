@@ -100,34 +100,44 @@ public function index(ConseillerRepository $conseillerRepository): Response
 
 /* *************************************** Réserver en ligne *****************************************************************/
 
-    #[Route('/reservation', name: 'front_reservation', methods: ['GET', 'POST'])]
-    public function reservationClient(Request $request, ParticipantRepository $participantRepository, ReservationRepository $reservationRepository): Response
+    #[Route('/{id}/reservation', name: 'front_reservation', methods: ['GET', 'POST'])]
+    public function reservationClient(Produit $produit, Request $request, ParticipantRepository $participantRepository, ReservationRepository $reservationRepository): Response
     {
+        
         $reservation = new Reservation();
+        
         $form = $this->createForm(ReservationFrontType::class, $reservation);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $date_reservation = new \DateTime();
-            $reservation->setDateReservation($date_reservation);
-            $reservation->setStatut('En Attente');
 
             $participants = $form->getData()->getParticipants();
             
             foreach ($participants as $participant) {
-                $participantRepository->add($participant);
-                $participant->setReservation($reservation);
                 $reservation->addParticipant($participant);
-
-            $reservationRepository->add($reservation);
-            return $this->redirectToRoute('accueil', [], Response::HTTP_SEE_OTHER);
             }
+        $reservation->setClient($this->getUser());
+        $date = new \DateTime();
+        $reservation->setDateReservation($date);
+        $ref = "#" . $produit->getId() . $date->format('Y-m-D H:i:s') ;
+        $reservation->setReference($ref);    
+        $reservation->setProduit($produit);    
+        $coutProd = $produit->getPrix();
+        $coutTot = $coutProd * count($participants);
+        $reservation->setPrixTotal($coutTot);
+        $reservation->setStatut('En Attente');
+
+        $reservationRepository->add($reservation);
+
+        return $this->redirectToRoute('accueil', [], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->renderForm('front/reservation.html.twig', [
             'reservation' => $reservation,
             'form' => $form,
+            'produit' => $produit,
+
         ]);
     }
 /* *************************************** Profil *****************************************************************/
@@ -137,7 +147,7 @@ public function profil(): Response
 {
     $user = $this->getUser();
     return $this->render('front/profil.html.twig', [
-        'user' => $user
+        'user' => $user,
     ]);
 }
 

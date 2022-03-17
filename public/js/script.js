@@ -1,21 +1,10 @@
 $(document).ready(() => {
 	let containerEtapes = $(".container-etapes");
 	let addNewEtape = $(
-		"<button class='btn btn-secondary text-light' href='#'>Ajouter une nouvelle étape</button>"
+		"<a class='btn btn-secondary text-light m-4' href='#'>Ajouter une nouvelle étape</a>"
 	);
 	containerEtapes.append(addNewEtape);
 	containerEtapes.data("index", containerEtapes.find(".card-etape").length);
-
-	let containerParticipants = $(".container-participants");
-	let addNewParticipant = $(
-		"<a class='btn btn-secondary text-light m-3' href='#'>Ajouter un autre participant</a>"
-	);
-
-	containerParticipants.append(addNewParticipant);
-	containerParticipants.data(
-		"index",
-		containerParticipants.find(".card-participant").length
-	);
 
 	/** ***********************************AJOUT BOUTON ETAPES AU FORMULAIRE DE PRODUIT***************************************************** */
 	/** ***********************************fonction addNewForm***************************************************** */
@@ -25,7 +14,7 @@ $(document).ready(() => {
 		let index = containerEtapes.data("index");
 		let newForm = prototype;
 		newForm = newForm.replace(/__name__/g, index);
-		containerEtapes.data("index", index++);
+		containerEtapes.data("index", ++index);
 
 		let card = $('<div class="card-etape"></div>');
 		card.append(newForm);
@@ -41,7 +30,7 @@ $(document).ready(() => {
 	/** ***********************************fonction addRemoveButton***************************************************** */
 	function addRemoveButton(card) {
 		let removeButton = $(
-			'<button class="btn btn-danger" href="#">Supprimer l\'étape</button>'
+			'<a class="btn btn-danger rounded-pill mb-3" href="#">Supprimer l\'étape</a>'
 		);
 		card.append(removeButton);
 		removeButton.click(function (e) {
@@ -58,17 +47,29 @@ $(document).ready(() => {
 
 	/** ***********************************AJOUT BOUTON Participant AU FORMULAIRE DE RESERVATION***************************************************** */
 	/** ***********************************fonction addNewForm***************************************************** */
+	let containerParticipants = $(".container-participants");
+	let addNewParticipant = $(
+		"<a class='btn btn-secondary text-light m-3' href='#'>Ajouter un autre participant</a>"
+	);
+
+	containerParticipants.append(addNewParticipant);
+	containerParticipants.data(
+		"index",
+		containerParticipants.find(".card-participant").length
+	);
 
 	//fonction qui permet d'ajouter dynamiquement le formulaire d'ajout de participant au DOM
-
 	function addNewFormParticipant() {
 		let prototype = containerParticipants.data("prototype");
 		let index = containerParticipants.data("index");
 		let newForm = prototype;
 		newForm = newForm.replace(/__name__/g, index);
-		containerParticipants.data("index", index++);
-
-		let card = $('<div class="card-participant"></div>');
+		containerParticipants.data("index", index + 1);
+		let card = $(
+			`<div class="card-participant card col-4 p-3"><div class="card-title">Participant ${
+				index + 1
+			}  </div></div>`
+		);
 		card.append(newForm);
 		addRemoveButtonParticipant(card);
 		addNewParticipant.before(card);
@@ -82,7 +83,7 @@ $(document).ready(() => {
 	/** ***********************************fonction addRemoveButton***************************************************** */
 	function addRemoveButtonParticipant(card) {
 		let removeButton = $(
-			'<button class="btn btn-danger" href="#">Supprimer le participant</button>'
+			'<a class="btn btn-danger" href="#">Supprimer le participant</a>'
 		);
 		card.append(removeButton);
 		removeButton.click(function (e) {
@@ -92,8 +93,9 @@ $(document).ready(() => {
 			});
 		});
 	}
+
 	containerParticipants.find(".card-participant").each(function () {
 		addRemoveButtonParticipant($(this));
 	});
-	addRemoveButtonParticipant($(this));
+	// addRemoveButtonParticipant($(this));
 });
