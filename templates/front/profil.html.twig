@@ -42,14 +42,14 @@
                                         Référence : {{reservation.produit.titre}}
                                     </div>
                                     <div>
-                                        Date de depart : {{reservation.statut}}
+                                        {# Date de depart : {{ reservation.date_depart|date('Y-m-d') }} #}
                                     </div>
                                     <div>
-                                        {# nombre de participants : {{count(reservation.participants)}} #}
+                                        nombre de participants : {{reservation.participants|length}}
                                     </div>
                                     <div>
                                         Total de la réservation :
-                                        {{reservation.prix_total}}
+                                        {# {{reservation.prix_total}} #}
                                     </div>
                                     
                                     
@@ -79,10 +79,11 @@
                                         Référence : {{reservation.produit.titre}}
                                     </div>
                                     <div>
-                                        Date de depart : {{reservation.statut}}
+                                        {# Date de depart : {{ reservation.date_depart|date('Y-m-d') }} #}
+
                                     </div>
                                     <div>
-                                        {# nombre de participants : {{count(reservation.participants)}} #}
+                                        nombre de participants : {{reservation.participants|length}}
                                     </div>
                                     <div>
                                         Total de la réservation :
@@ -114,14 +115,15 @@
                                         Référence : {{reservation.produit.titre}}
                                     </div>
                                     <div>
-                                        Date de depart : {{reservation.statut}}
+                                        {# Date de depart : {{ reservation.date_depart|date('Y-m-d') }} #}
+}
                                     </div>
                                     <div>
-                                        {# nombre de participants : {{count(reservation.participants)}} #}
+                                        nombre de participants : {{reservation.participants|length}}
                                     </div>
                                     <div>
                                         Total de la réservation :
-                                        {{reservation.prix_total}}
+                                        {# {{reservation.prix_total}} #}
                                     </div>
                                     
                                 {% endif %}

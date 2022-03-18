@@ -40,7 +40,7 @@ $(document).ready(() => {
 			});
 		});
 	}
-
+https://cdnjs.com/libraries/jquery
 	containerEtapes.find(".card-etape").each(function () {
 		addRemoveButton($(this));
 	});

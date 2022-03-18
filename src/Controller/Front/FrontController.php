@@ -97,6 +97,15 @@ public function index(ConseillerRepository $conseillerRepository): Response
             'produits' => $produits
         ]);
     }
+/* *************************************** Destination Selectionnée *****************************************************************/
+
+    #[Route('/destination', name: 'front_destination_index', methods: ['GET', 'POST'])]
+    public function frontDestinationIndex(DestinationRepository $destinationRepository): Response
+    {
+        return $this->render('front/destination_front_index.html.twig', [
+            'destinations' => $destinationRepository->findAll(),
+        ]);
+    }
 
 /* *************************************** Réserver en ligne *****************************************************************/
 

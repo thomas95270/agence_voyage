@@ -35,6 +35,7 @@ class ProduitController extends AbstractController
 
             $etapes = $form->getData()->getEtapes();
             foreach ($etapes as $etape) {
+                $etape->setProduit($produit);
                 $produit->addEtape($etape);
             }
 

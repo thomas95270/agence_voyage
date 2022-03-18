@@ -36,6 +36,7 @@ class ReservationController extends AbstractController
             $participants = $form->getData()->getParticipants();
 
             foreach ($participants as $participant) {
+                $participants->setReservation($reservation);
                 $reservation->addParticipant($participant);
                 
             }

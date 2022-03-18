@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Destination{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center text-info m-5">Gestion des Destination</h1>
+
+    <table class="table table_index text-center mx-auto">
+
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for destination in destinations %}
+            <tr>
+                <td>
+                    <a class="text-reset text-decoration-none" href="{{path('front_destination', {
+                                'id':destination.id
+                                }) }}">
+                                {{destination.titre}}
+                    </a>
+                </td>
+                <td>{{ destination.description }}</td>
+            </tr>
+                                    
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    </div>
+    </div>
+{% endblock %}
